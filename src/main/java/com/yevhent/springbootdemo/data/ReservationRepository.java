@@ -8,5 +8,7 @@ import java.util.Date;
 @Component
 public interface ReservationRepository extends CrudRepository<Reservation, Long> {
 
-    Iterable<Reservation> findAllByTargetDate(Date date);
+    Iterable<Reservation> findAllByTargetDate(Date targetDate);
+
+    boolean existsByTargetDateAndRoomId(Date targetDate, Long roomId);
 }

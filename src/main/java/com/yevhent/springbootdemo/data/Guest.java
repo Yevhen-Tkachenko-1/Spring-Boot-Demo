@@ -24,7 +24,7 @@ public class Guest {
     @Column(name = "LAST_NAME")
     private String lastName;
     @Column(name = "EMAIL_ADDRESS")
-    private String emailAddress;
+    private String email;
     @Column(name = "ADDRESS")
     private String address;
     @Column(name = "COUNTRY")
@@ -40,7 +40,7 @@ public class Guest {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", emailAddress='" + emailAddress + '\'' +
+                ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 ", country='" + country + '\'' +
                 ", state='" + state + '\'' +

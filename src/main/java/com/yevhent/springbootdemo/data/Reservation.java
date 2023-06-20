@@ -7,6 +7,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
@@ -15,16 +18,21 @@ import java.util.Date;
 @Table(name = "RESERVATION")
 @Getter
 @Setter
+@RequiredArgsConstructor
+@NoArgsConstructor
 public class Reservation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "RESERVATION_ID")
-    private long id;
+    private Long id;
+    @NonNull
     @Column(name = "ROOM_ID")
-    private long roomId;
+    private Long roomId;
+    @NonNull
     @Column(name = "GUEST_ID")
-    private long guestId;
+    private Long guestId;
+    @NonNull
     @Column(name = "TARGET_DATE")
     private Date targetDate;
 
