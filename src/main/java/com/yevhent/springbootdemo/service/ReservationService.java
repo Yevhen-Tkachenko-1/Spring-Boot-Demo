@@ -30,22 +30,31 @@ public class ReservationService {
         this.reservationRepository = reservationRepository;
     }
 
-    public List<ReservationModel> getReservationsByDate(Date date) {
-        Iterable<Reservation> reservations = reservationRepository.findAllByTargetDate(date);
-
+    public List<ReservationModel> getReservations() {
+        Iterable<Reservation> reservations = reservationRepository.findAll();
         return StreamSupport.stream(reservations.spliterator(), false)
                 .map(this::buildReservationModel).collect(Collectors.toList());
     }
 
+    public List<ReservationModel> getReservations(Date date) {
+        List<Reservation> reservations = reservationRepository.findByTargetDate(date);
+        return reservations.stream().map(this::buildReservationModel).collect(Collectors.toList());
+    }
+
+    public Optional<ReservationModel> getReservation(Date date, String roomNumber) {
+        Optional<Room> room = roomRepository.findByNumber(roomNumber);
+        Optional<Reservation> reservation = room.flatMap(r -> reservationRepository.findByTargetDateAndRoomId(date, r.getId()));
+        return reservation.map(this::buildReservationModel);
+    }
+
     public Optional<Reservation> createReservation(ReservationModel reservationModel) {
-        Optional<Room> rooms = roomRepository.findByNumber(reservationModel.getRoomNumber());
-        Room requestedRoom = rooms.get();
-        boolean roomIsAlreadyReserved = reservationRepository.existsByTargetDateAndRoomId(reservationModel.getTargetDate(), requestedRoom.getId());
-        if(roomIsAlreadyReserved){
+        Room room = roomRepository.findByNumber(reservationModel.getRoomNumber()).get();
+        boolean roomIsAlreadyReserved = reservationRepository.existsByTargetDateAndRoomId(reservationModel.getTargetDate(), room.getId());
+        if (roomIsAlreadyReserved) {
             return Optional.empty();
         }
         Guest guest = guestRepository.findByEmail(reservationModel.getGuestEmail()).orElseThrow();
-        Reservation reservation = new Reservation(requestedRoom.getId(), guest.getId(), reservationModel.getTargetDate());
+        Reservation reservation = new Reservation(room.getId(), guest.getId(), reservationModel.getTargetDate());
         return Optional.of(reservationRepository.save(reservation));
     }
 

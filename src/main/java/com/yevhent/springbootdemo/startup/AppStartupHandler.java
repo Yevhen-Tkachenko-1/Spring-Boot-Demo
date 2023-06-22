@@ -60,13 +60,13 @@ public class AppStartupHandler implements ApplicationListener<ApplicationReadyEv
         }
 
         Date date = DateUtil.convert("2022-01-01");
-        Iterable<Reservation> dateReservations = reservationRepository.findAllByTargetDate(date);
+        List<Reservation> dateReservations = reservationRepository.findByTargetDate(date);
         System.out.println("Reservations for " + date + ":");
         for (Reservation reservation : dateReservations) {
             System.out.println(reservation);
         }
 
-        List<ReservationModel> reservationModels = reservationService.getReservationsByDate(date);
+        List<ReservationModel> reservationModels = reservationService.getReservations(date);
         System.out.println("Reservation Models for " + date + ":");
         for (ReservationModel reservation : reservationModels) {
             System.out.println(reservation);
@@ -75,9 +75,7 @@ public class AppStartupHandler implements ApplicationListener<ApplicationReadyEv
         ReservationModel reservationModel = new ReservationModel(date, "O1", "radams1v@xinhuanet.com");
         Optional<Reservation> createdReservation = reservationService.createReservation(reservationModel);
         System.out.println("Created Reservation for " + date + ":");
-        if (createdReservation.isPresent()) {
-            System.out.println(createdReservation.get());
-        }
+        createdReservation.ifPresent(System.out::println);
         Optional<Reservation> notCreatedReservation = reservationService.createReservation(reservationModel);
         System.out.println("Not Created Reservation for " + date + ":");
         if (notCreatedReservation.isEmpty()) {
