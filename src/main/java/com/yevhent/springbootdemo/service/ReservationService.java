@@ -7,6 +7,7 @@ import com.yevhent.springbootdemo.data.ReservationRepository;
 import com.yevhent.springbootdemo.data.Room;
 import com.yevhent.springbootdemo.data.RoomRepository;
 import com.yevhent.springbootdemo.model.ReservationModel;
+import com.yevhent.springbootdemo.util.CollectionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Service
 public class ReservationService {
@@ -31,9 +31,7 @@ public class ReservationService {
     }
 
     public List<ReservationModel> getReservations() {
-        Iterable<Reservation> reservations = reservationRepository.findAll();
-        return StreamSupport.stream(reservations.spliterator(), false)
-                .map(this::buildReservationModel).collect(Collectors.toList());
+        return CollectionUtil.toList(reservationRepository.findAll(), this::buildReservationModel);
     }
 
     public List<ReservationModel> getReservations(Date date) {

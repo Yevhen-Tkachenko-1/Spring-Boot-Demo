@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Yevhen's Hotel</title>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+</head>
+<body>
+<p th:text="'Clock: ' + ${currentDateTime}">current date time</p>
+<h1>Guest Base</h1>
+<table>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+    </tr>
+    <tr th:each="guest: ${guestBase}">
+        <td th:text="${guest.firstName}">first name</td>
+        <td th:text="${guest.lastName}">last name</td>
+        <td th:text="${guest.phoneNumber}">phone number</td>
+    </tr>
+</table>
+</body>
+</html>
