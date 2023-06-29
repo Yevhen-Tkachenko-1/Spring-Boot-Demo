@@ -1,6 +1,12 @@
 # Spring-Boot-Demo-Application
 Learn and play with Spring Framework using Spring Boot
 
+### Set up your Local Project
+In case you use IntelliJ IDEA, make sure you have such settings:
+- [Project Structure 1](decumentation/IntelliJ-IDEA-settings-1.PNG)
+- [Project Structure 2](decumentation/IntelliJ-IDEA-settings-2.PNG)
+- [Settings](decumentation/IntelliJ-IDEA-settings-3.PNG)
+
 ### Static UI review
 - Open static [home page](src/main/resources/static/index.html) in browser to see view and data placeholders
 - Open static [reservations page](src/main/resources/templates/room_reservations.html) in browser to see view and data placeholders
