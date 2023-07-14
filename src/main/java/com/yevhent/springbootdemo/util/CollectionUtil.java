@@ -10,4 +10,8 @@ public class CollectionUtil {
     public static <P, R> List<R> toList(Iterable<P> iterable, Function<P, R> mapper) {
         return StreamSupport.stream(iterable.spliterator(), false).map(mapper).collect(Collectors.toList());
     }
+
+    public static <T> List<T> toList(Iterable<T> iterable) {
+        return StreamSupport.stream(iterable.spliterator(), false).collect(Collectors.toList());
+    }
 }

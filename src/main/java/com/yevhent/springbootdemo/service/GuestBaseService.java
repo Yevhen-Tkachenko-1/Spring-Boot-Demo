@@ -16,15 +16,27 @@ public class GuestBaseService {
 
     private final GuestRepository guestRepository;
 
-    public List<GuestModel> getGuestBase() {
+    public Optional<Guest> getGuest(Long id) {
+        return guestRepository.findById(id);
+    }
+
+    public List<Guest> getGuests() {
+        return CollectionUtil.toList(guestRepository.findAll());
+    }
+
+    public List<GuestModel> getGuestModels() {
         return CollectionUtil.toList(guestRepository.findAll(), this::buildGuestModel);
     }
 
-    public Optional<GuestModel> getGuest(String email) {
+    public Optional<GuestModel> getGuestModel(String email) {
         return guestRepository.findByEmail(email).map(this::buildGuestModel);
     }
 
-    public Optional<GuestModel> getGuest(String firstName, String lastName) {
+    public Optional<Guest> addGuest(Guest guest) {
+        return guestRepository.findByEmail(guest.getEmail()).or(() -> Optional.of(guestRepository.save(guest)));
+    }
+
+    public Optional<GuestModel> getGuestModel(String firstName, String lastName) {
         return guestRepository.findByFirstNameAndLastName(firstName, lastName).map(this::buildGuestModel);
     }
 

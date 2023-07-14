@@ -25,8 +25,8 @@ public class GuestBaseController {
     @GetMapping({"", "/{email}"})
     public ModelAndView getGuestBase(@PathVariable Optional<String> email) {
         ModelAndView modelAndView = new ModelAndView("guest_base");
-        List<GuestModel> guestBase = email.map(e -> guestBaseService.getGuest(e).stream().toList())
-                .orElseGet(guestBaseService::getGuestBase);
+        List<GuestModel> guestBase = email.map(e -> guestBaseService.getGuestModel(e).stream().toList())
+                .orElseGet(guestBaseService::getGuestModels);
         modelAndView.addObject("currentDateTime", DateUtil.dateTimeNow());
         modelAndView.addObject("guestBase", guestBase);
         return modelAndView;
@@ -36,7 +36,7 @@ public class GuestBaseController {
     public ModelAndView getGuest(@RequestParam String firstName, @RequestParam String lastName) {
         StringUtil.requireNotEmpty(firstName, lastName);
         ModelAndView modelAndView = new ModelAndView("guest_base");
-        Optional<GuestModel> guest = guestBaseService.getGuest(firstName, lastName);
+        Optional<GuestModel> guest = guestBaseService.getGuestModel(firstName, lastName);
         modelAndView.addObject("currentDateTime", DateUtil.dateTimeNow());
         modelAndView.addObject("guestBase", guest.orElse(null));
         return modelAndView;

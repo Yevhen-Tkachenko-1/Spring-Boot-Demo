@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "ab42567c-bfa7-4e8b-a078-5ba6469b48fd",
+		"name": "Spring-Boot-Demo-Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13907776"
+	},
+	"item": [
+		{
+			"name": "1 - Check all Guests",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "2 - Register new Guest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\":\"Yevhen\", \r\n    \"lastName\":\"T\", \r\n    \"email\":\"Yevhen.T@gmail.com\", \r\n    \"address\":\"House\", \r\n    \"country\":\"UA\", \r\n    \"state\":\"L\", \r\n    \"phoneNumber\":\"123-456-789\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/guestbase",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"guestbase"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3 - Check registered Guest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/guestbase?id=201",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"guestbase"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "201"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4 - Check all Reservations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/reservations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"reservations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5 - Create new Reservation",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"targetDate\":\"2023-01-01\", \r\n    \"roomNumber\":\"W1\", \r\n    \"guestEmail\":\"Yevhen.T@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/reservations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"reservations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6 - Check created Reservation",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

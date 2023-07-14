@@ -24,11 +24,11 @@ public class RoomReservationController {
     public String getRoomReservations(@RequestParam Optional<String> targetDate, @RequestParam Optional<String> roomNumber, Model model) {
         List<ReservationModel> reservationModels;
         if (targetDate.isPresent() && roomNumber.isPresent()) {
-            reservationModels = reservationService.getReservation(DateUtil.convert(targetDate.get()), roomNumber.get()).stream().toList();
+            reservationModels = reservationService.getReservationModel(DateUtil.convert(targetDate.get()), roomNumber.get()).stream().toList();
         } else if (targetDate.isPresent()) {
-            reservationModels = reservationService.getReservations(DateUtil.convert(targetDate.get()));
+            reservationModels = reservationService.getReservationModels(DateUtil.convert(targetDate.get()));
         } else {
-            reservationModels = reservationService.getReservations();
+            reservationModels = reservationService.getReservationModels();
         }
         model.addAttribute("currentDateTime", DateUtil.dateTimeNow());
         model.addAttribute("roomReservations", reservationModels);

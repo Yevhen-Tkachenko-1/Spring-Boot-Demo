@@ -30,23 +30,32 @@ public class ReservationService {
         this.reservationRepository = reservationRepository;
     }
 
-    public List<ReservationModel> getReservations() {
+    public Optional<Reservation> getReservation(Long id) {
+        return reservationRepository.findById(id);
+    }
+
+    public List<Reservation> getReservations() {
+        return CollectionUtil.toList(reservationRepository.findAll());
+    }
+
+    public List<ReservationModel> getReservationModels() {
         return CollectionUtil.toList(reservationRepository.findAll(), this::buildReservationModel);
     }
 
-    public List<ReservationModel> getReservations(Date date) {
+    public List<ReservationModel> getReservationModels(Date date) {
         List<Reservation> reservations = reservationRepository.findByTargetDate(date);
         return reservations.stream().map(this::buildReservationModel).collect(Collectors.toList());
     }
 
-    public Optional<ReservationModel> getReservation(Date date, String roomNumber) {
+    public Optional<ReservationModel> getReservationModel(Date date, String roomNumber) {
         Optional<Room> room = roomRepository.findByNumber(roomNumber);
         Optional<Reservation> reservation = room.flatMap(r -> reservationRepository.findByTargetDateAndRoomId(date, r.getId()));
         return reservation.map(this::buildReservationModel);
     }
 
     public Optional<Reservation> createReservation(ReservationModel reservationModel) {
-        Room room = roomRepository.findByNumber(reservationModel.getRoomNumber()).get();
+        Room room = roomRepository.findByNumber(reservationModel.getRoomNumber())
+                .orElseThrow(() -> new IllegalArgumentException("Room is not present: " + reservationModel.getRoomNumber()));
         boolean roomIsAlreadyReserved = reservationRepository.existsByTargetDateAndRoomId(reservationModel.getTargetDate(), room.getId());
         if (roomIsAlreadyReserved) {
             return Optional.empty();

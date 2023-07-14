@@ -66,7 +66,7 @@ public class AppStartupHandler implements ApplicationListener<ApplicationReadyEv
             System.out.println(reservation);
         }
 
-        List<ReservationModel> reservationModels = reservationService.getReservations(date);
+        List<ReservationModel> reservationModels = reservationService.getReservationModels(date);
         System.out.println("Reservation Models for " + date + ":");
         for (ReservationModel reservation : reservationModels) {
             System.out.println(reservation);
