@@ -1,9 +1,24 @@
 # Spring-Boot-Demo-Application
 Learn and play with Spring Framework using Spring Boot
 
-Project is created based on LinkedIn learning:
-- Learning Spring with Spring Boot
-- Spring Boot 2.0 Essential Training
+Topics covered:
+- Spring Data
+- Spring App Listener
+- Service Layer
+- Web Controllers
+- Web Pages with Thymeleaf
+- Rest Controllers
+
+Implemented based on LinkedIn learning course:
+[Learning Spring with Spring Boot](https://www.linkedin.com/learning/learning-spring-with-spring-boot-13886371)
+
+### Tech stack
+
+- Java 17
+- Gradle
+- Spring Boot 3.1.0 (data-jpa, web, thymeleaf, test)
+- H2 database
+- Lombok
 
 ### Set up your Local Project
 In case you use IntelliJ IDEA, make sure you have such settings:
