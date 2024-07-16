@@ -1,0 +1,14 @@
+package yevhent.demo.springboot.hotel.app.data;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Component;
+
+import java.util.Optional;
+
+@Component
+public interface GuestRepository extends CrudRepository<Guest, Long> {
+
+    Optional<Guest> findByEmail(String email);
+
+    Optional<Guest> findByFirstNameAndLastName(String firstName, String lastName);
+}
