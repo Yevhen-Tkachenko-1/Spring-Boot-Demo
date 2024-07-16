@@ -13,4 +13,4 @@ There is [Hotel](Hotel-Spring-Boot-App/README.md) app to demo Spring Boot featur
 
 ### Spring Security App
 
-There is [Marketplace](Hotel-Spring-Boot-App/README.md) app to demo Spring Security with Spring Boot
+There is [Marketplace](Marketplace-Spring-Security-App) app to demo Spring Security with Spring Boot
