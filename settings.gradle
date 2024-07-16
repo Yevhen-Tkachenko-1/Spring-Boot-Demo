@@ -1,3 +1,4 @@
 rootProject.name = 'Spring-Boot-Demo'
 include 'Hotel-Spring-Boot-App'
+include 'Marketplace-Spring-Security-App'
 

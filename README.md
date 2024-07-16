@@ -1,18 +1,16 @@
 # Spring-Boot-Demo
+
 Learn and play with Spring Framework using Spring Boot
 
-Implemented based on LinkedIn learning course:
-[Learning Spring with Spring Boot](https://www.linkedin.com/learning/learning-spring-with-spring-boot-13886371)
+There are apps to cover main Spring features:
 
-### Tech stack
+* [Spring Boot App](#spring-boot-app)
+* [Spring Security App](#spring-security-app)
 
-- Java 17
-- Gradle
-- Spring Boot 3.1.0 (data-jpa, web, thymeleaf, test)
-- H2 database
-- Lombok
-
-### Module 1 
+### Spring Boot App
 
 There is [Hotel](Hotel-Spring-Boot-App/README.md) app to demo Spring Boot features
 
+### Spring Security App
+
+There is [Marketplace](Hotel-Spring-Boot-App/README.md) app to demo Spring Security with Spring Boot

@@ -1,16 +1,11 @@
-# Hotel Spring-Boot app
+# Marketplace Spring-Security app
 
 Implemented based on LinkedIn learning course:
-[Learning Spring with Spring Boot](https://www.linkedin.com/learning/learning-spring-with-spring-boot-13886371)
+[Spring: Spring Security](https://www.linkedin.com/learning/spring-spring-security-15832928)
 
-There is Hotel web app where we use next Spring features:
+There is Marketplace web app where we use next Spring Security features:
 
-- Spring Data
-- Spring App Listener
-- Service Layer
-- Web Controllers
-- Web Pages with Thymeleaf
-- Rest Controllers
+- ...
 
 ### Tech stack
 
@@ -19,7 +14,6 @@ There is Hotel web app where we use next Spring features:
 - Spring Boot 3.1.0 (data-jpa, web, thymeleaf, test)
 - H2 database
 - Lombok
-
 
 ### Set up your Local Project
 In case you use IntelliJ IDEA, make sure you have such settings:
