@@ -18,7 +18,7 @@ There is Marketplace web app where we use next Spring Security features:
 #### In-Memory Authentication (non-production) 
 
 We start from basic Web Spring Boot app.
-Let's check project structure and start it:
+Let's check project structure and start service:
 
 ![](picture/1.PNG)
 
@@ -52,7 +52,7 @@ So, app is accessible only with `username` and `password`.
 By default, in Spring Security `username` is `user` and password generated each time we run service.
 In our case it's `56997...` as we can see on screenshot above (IntelliJ logs output).
 
-Let's customize default Spring Security implementation (still it's should NOT be in production):
+Let's customize default Spring Security implementation (still it should NOT be in production):
 
 ![](picture/7.PNG)
 
