@@ -3,47 +3,72 @@
 Implemented based on LinkedIn learning course:
 [Spring: Spring Security](https://www.linkedin.com/learning/spring-spring-security-15832928)
 
-There is Marketplace web app where we use next Spring Security features:
-
-- ...
-
 ### Tech stack
 
 - Java 17
 - Gradle
-- Spring Boot 3.1.0 (data-jpa, web, thymeleaf, test)
+- Spring Security
 - H2 database
 - Lombok
 
-### Set up your Local Project
-In case you use IntelliJ IDEA, make sure you have such settings:
-![](picture/IntelliJ-IDEA-settings-1.PNG)
-![](picture/IntelliJ-IDEA-settings-2.PNG)
-![](picture/IntelliJ-IDEA-settings-3.PNG)
+There is Marketplace web app where we use next Spring Security features:
 
-### Static UI review
-- Open static [home page](Hotel-Spring-Boot-App/src/main/resources/static/index.html) in browser to see view and data placeholders
-- Open static [reservations page](Hotel-Spring-Boot-App/src/main/resources/templates/room_reservations.html) in browser to see view and data placeholders
-- Open static [guest base page](Hotel-Spring-Boot-App/src/main/resources/templates/guest_base.html) in browser to see view and data placeholders
+* [In-Memory Authentication (non-production)](#in-memory-authentication-non-production-)
 
-### Local run
-1. Run `main()` method in [application](src/main/java/com/yevhent/springbootdemo/SpringBootDemoApplication.java) class
-1. Check output in console
-1. Start exploring UI with [home page](http://localhost:8081) by opening it in browser
-1. Continue exploring UI with other pages:
-   - Go to [reservations page](http://localhost:8081/reservations) to see all reservations
-   - Go to [reservations page](http://localhost:8081/reservations?targetDate=2022-01-01) with `Target Date` request param
-   - Go to [reservations page](http://localhost:8081/reservations?targetDate=2022-01-01&roomNumber=C1) with `Target Date` and `Room Number` request params
-   - Go to [guest base page](http://localhost:8081/guestbase) to see all guests
-   - Go to [guest base page](http://localhost:8081/guestbase/radams1v@xinhuanet.com) with `Guest Email` path variable
-   - Go to [guest base page](http://localhost:8081/guestbase/name?firstName=Roy&lastName=Adams) with  `name` path and `First Name` and `Last Name` request params
-1. Make REST API calls using command line:
-   - Add Guest:<br> 
-   ```
-   curl -X POST http://localhost:8081/api/guestbase -H 'Content-Type: application/json' -d '{"firstName":"Yevhen","lastName":"T","email":"Yevhen.T@gmail.com","address":"House","country":"UA","state":"L","phoneNumber":"123456789"}'
-   ```
-   - Create Room Reservation:<br>
-   ```
-   curl -X POST http://localhost:8081/api/reservations -H 'Content-Type: application/json' -d '{"targetDate":"2023-01-01", "roomNumber":"W1", "guestEmail":"Yevhen.T@gmail.com"}`
-   ```
-1. Make REST API calls using [Postman collection](Hotel-Spring-Boot-App/postman/API-requests.json).
+#### In-Memory Authentication (non-production) 
+
+We start from basic Web Spring Boot app.
+Let's check project structure and start it:
+
+![](picture/1.PNG)
+
+As we can see, in `build.gradle` file we have standard dependencies for Spring Boot web app.
+
+As soon as app is up and running we can easily access all the endpoints.
+
+Home:
+
+![](picture/2.PNG)
+
+Customers:
+
+![](picture/3.PNG)
+
+Orders:
+
+![](picture/4.PNG)
+
+Now let's introduce Spring Security by doing small change in `build.gradle` file.
+We are adding just one line dependency `implementation("org.springframework.boot:spring-boot-starter-security")`
+and run our app again:
+
+![](picture/5.PNG)
+
+At that time when we try to access any endpoint, we are getting redirected to `/login` page:
+
+![](picture/6.PNG)
+
+So, app is accessible only with `username` and `password`.
+By default, in Spring Security `username` is `user` and password generated each time we run service.
+In our case it's `56997...` as we can see on screenshot above (IntelliJ logs output).
+
+Let's customize default Spring Security implementation (still it's should NOT be in production):
+
+![](picture/7.PNG)
+
+We've added custom HTTP filtration, in order to make HOME page open, but other endpoints remain secured.
+As soon as app is up and running we can easily access endpoints:
+
+`localhost:8082/`:
+
+![](picture/8.PNG)
+
+`localhost:8082/home`:
+
+![](picture/9.PNG)
+
+But credentials are required for others:
+
+![](picture/10.PNG)
+
+Now, we have to type `user` as `username` and `password` as `password` (as specified in our configuration class)
