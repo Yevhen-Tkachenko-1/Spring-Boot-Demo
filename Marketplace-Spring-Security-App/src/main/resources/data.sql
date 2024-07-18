@@ -9,3 +9,10 @@ INSERT INTO customers (name, contact_name, email, phone) values ('Wayne Enterpri
 INSERT INTO orders (customer_id, order_info) values ((SELECT customer_id FROM customers where name = 'Acme'), '1500 Widgets');
 INSERT INTO orders (customer_id, order_info) values ((SELECT customer_id FROM customers where name = 'Acme'), '3000 Widgets');
 INSERT INTO orders (customer_id, order_info) values ((SELECT customer_id FROM customers where name = 'Callahan Auto'), '200 Widgets');
+
+INSERT INTO users (username, password, enabled) values ('Yevhen', '20240718-y', true);
+INSERT INTO users (username, password, enabled) values ('admin', '20240718-a', true);
+
+INSERT INTO authorities (username, authority) values ('Yevhen', 'ROLE_USER');
+INSERT INTO authorities (username, authority) values ('admin', 'ROLE_USER');
+INSERT INTO authorities (username, authority) values ('admin', 'ROLE_ADMIN');
