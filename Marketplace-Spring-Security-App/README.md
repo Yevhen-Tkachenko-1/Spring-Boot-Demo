@@ -13,7 +13,7 @@ Implemented based on LinkedIn learning course:
 
 There is Marketplace web app where we use next Spring Security features:
 
-* [In-Memory Authentication (non-production)](#in-memory-authentication-non-production-)
+* [In-Memory Authentication (non-production)](#in-memory-authentication-non-production)
 * [JDBC User Authentication (non-production)](#jdbc-user-authentication-non-production)
 
 #### In-Memory Authentication (non-production)
