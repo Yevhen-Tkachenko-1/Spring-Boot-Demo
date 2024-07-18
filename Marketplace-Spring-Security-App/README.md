@@ -72,3 +72,38 @@ But credentials are required for others:
 ![](picture/10.PNG)
 
 Now, we have to type `user` as `username` and `password` as `password` (as specified in our configuration class)
+
+#### JDBC User Authentication (non-production)
+
+Previously we had credentials in runtime memory of app.
+Now, let's store sensitive data as corresponding entities in DB 
+and configure Spring to use JDBC User Details as suggested in 
+[official docs](https://docs.spring.io/spring-security/reference/servlet/appendix/database-schema.html#_user_schema): 
+
+![](picture/11.PNG)
+
+As shown on the picture:
+- updated schema to have `User` and `Authority` Entities
+- inserted some data as plain text (which is not production way)
+- updated Spring Configuration to use  `JdbcUserDetailsManager` implementation
+- added Spring Configuration to encode passwords from DB - no encoding in our case (which is not production way)
+
+As soon as app is up and running we can easily access endpoints:
+
+`localhost:8082/`, `localhost:8082/home`:
+
+![](picture/12.PNG)
+
+But still, credentials are required for others.
+
+For example, we can use user `admin` for Orders page:
+
+![](picture/13.PNG)
+
+And, for example, we can use user `Yevhen` for Customers page:
+
+![](picture/14.PNG)
+
+with passwords hardcoded in `data.sql`.
+
+For now, no authority matters (`ROLE_ADMIN` or `ROLE_USER`).
