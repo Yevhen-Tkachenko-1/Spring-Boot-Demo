@@ -14,8 +14,9 @@ Implemented based on LinkedIn learning course:
 There is Marketplace web app where we use next Spring Security features:
 
 * [In-Memory Authentication (non-production)](#in-memory-authentication-non-production-)
+* [JDBC User Authentication (non-production)](#jdbc-user-authentication-non-production)
 
-#### In-Memory Authentication (non-production) 
+#### In-Memory Authentication (non-production)
 
 We start from basic Web Spring Boot app.
 Let's check project structure and start service:
@@ -76,13 +77,14 @@ Now, we have to type `user` as `username` and `password` as `password` (as speci
 #### JDBC User Authentication (non-production)
 
 Previously we had credentials in runtime memory of app.
-Now, let's store sensitive data as corresponding entities in DB 
-and configure Spring to use JDBC User Details as suggested in 
-[official docs](https://docs.spring.io/spring-security/reference/servlet/appendix/database-schema.html#_user_schema): 
+Now, let's store sensitive data as corresponding entities in DB
+and configure Spring to use JDBC User Details as suggested in
+[official docs](https://docs.spring.io/spring-security/reference/servlet/appendix/database-schema.html#_user_schema):
 
 ![](picture/11.PNG)
 
 As shown on the picture:
+
 - updated schema to have `User` and `Authority` Entities
 - inserted some data as plain text (which is not production way)
 - updated Spring Configuration to use  `JdbcUserDetailsManager` implementation
