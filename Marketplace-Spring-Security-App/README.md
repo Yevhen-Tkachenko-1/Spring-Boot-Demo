@@ -109,3 +109,27 @@ And, for example, we can use user `Yevhen` for Customers page:
 with passwords hardcoded in `data.sql`.
 
 For now, no authority matters (`ROLE_ADMIN` or `ROLE_USER`).
+
+#### BCrypt hashing for passwords
+
+Now, let's improve way of storing passwords in DB.
+We will use BCrypt hashing to store generated values instead of plain text.
+We can use online encryption like [this](https://bcrypt-generator.com/).
+
+So, we have to replace passwords in `data.sql` and change encoder in Spring Config:
+
+![](picture/15.PNG)
+
+Nothing changed for the Users, they still use simple passwords as it was before:
+
+Admin:
+
+![](picture/16.PNG)
+
+Yevhen:
+
+![](picture/17.PNG)
+
+but internally Spring Security authenticates as like this 
+
+`Boolean isMatch = passwordEncoder().matches(enteredPassword, dbHashedPassword);`
