@@ -10,8 +10,13 @@ INSERT INTO orders (customer_id, order_info) values ((SELECT customer_id FROM cu
 INSERT INTO orders (customer_id, order_info) values ((SELECT customer_id FROM customers where name = 'Acme'), '3000 Widgets');
 INSERT INTO orders (customer_id, order_info) values ((SELECT customer_id FROM customers where name = 'Callahan Auto'), '200 Widgets');
 
-INSERT INTO users (username, password, enabled) values ('Yevhen', '20240718-y', true);
-INSERT INTO users (username, password, enabled) values ('admin', '20240718-a', true);
+-- Plain text passwords:
+-- INSERT INTO users (username, password, enabled) values ('Yevhen', '20240718-y', true);
+-- INSERT INTO users (username, password, enabled) values ('admin', '20240718-a', true);
+
+-- BCrypt encrypted passwords:
+INSERT INTO users (username, password, enabled) values ('Yevhen', '$2a$12$bnTWJAkY4g.Cb8OuBuBe/.29w.05Uc24mcle3dF5uKXtKRNfwb8QO', true);
+INSERT INTO users (username, password, enabled) values ('admin', '$2a$12$BO7n3dJqYLLod0zdies7NuHkAdnP3k8wqaGfwOdRpZpIDL7WUrn7y', true);
 
 INSERT INTO authorities (username, authority) values ('Yevhen', 'ROLE_USER');
 INSERT INTO authorities (username, authority) values ('admin', 'ROLE_USER');
