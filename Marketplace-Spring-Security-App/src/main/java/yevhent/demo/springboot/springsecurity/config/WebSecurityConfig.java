@@ -22,10 +22,21 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(customizer ->
-                        customizer.requestMatchers("/", "/home").permitAll()
-                                .anyRequest().authenticated())
-                .httpBasic(Customizer.withDefaults());
+
+        http.authorizeHttpRequests(customizer -> customizer.requestMatchers("/", "/home").permitAll());
+
+        http.authorizeHttpRequests(customizer -> customizer.anyRequest().authenticated());
+
+        http.formLogin(customizer -> customizer
+                .loginPage("/login")
+                .failureUrl("/login?error")
+                .permitAll());
+
+        http.logout(customizer -> customizer
+                .clearAuthentication(true)
+                .invalidateHttpSession(true)
+                .logoutSuccessUrl("/login?logout").permitAll());
+
         return http.build();
     }
 
