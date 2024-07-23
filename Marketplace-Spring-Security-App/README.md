@@ -133,3 +133,48 @@ Yevhen:
 but internally Spring Security authenticates as like this 
 
 `Boolean isMatch = passwordEncoder().matches(enteredPassword, dbHashedPassword);`
+
+#### Form-based authentication
+
+In previous section, we've seen basic authentication with UI fields provided by default.
+This is non-production case in terms of functionality limitations. 
+For example, we would like to have customized UI Form or logout feature.
+
+Now, we are going to implement custom approach for User to login/logout.
+
+Let's start from HTML changes:
+
+![](picture/18.PNG)
+
+We added 2 buttons: `login` is visible when User is not authenticated and `logout` is visible when User is.
+Also, there we have new template for `Login` page.
+
+Next we have to add dependency to make Thymeleaf elements work (with version according to Spring Boot version)
+
+![](picture/19.PNG)
+ 
+Now, we are good to implement java changes:
+
+![](picture/20.PNG)
+
+We've added 
+- new endpoint for login page
+- filters for User to be redirected to `login` 
+- `logout` action settings
+
+Once app is up and running we can easily access homepage and see `login` button:
+
+![](picture/21.PNG)
+
+If User tries open Customers tab, he will get `Login` page:
+
+![](picture/22.PNG)
+
+Once signed in, User is able to see content and has button `Logout` to invalidate session: 
+
+![](picture/23.PNG)
+
+By clicking logout we get back to `Login` page with corresponding message:
+
+![](picture/24.PNG)
+
