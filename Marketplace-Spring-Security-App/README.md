@@ -166,7 +166,7 @@ Once app is up and running we can easily access homepage and see `login` button:
 
 ![](picture/21.PNG)
 
-If User tries open Customers tab, he will get `Login` page:
+For example, if User tries to open Customers tab, he will get `Login` page:
 
 ![](picture/22.PNG)
 
