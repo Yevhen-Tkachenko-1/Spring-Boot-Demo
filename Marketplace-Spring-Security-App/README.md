@@ -146,7 +146,10 @@ Let's start from HTML changes:
 
 ![](picture/18.PNG)
 
-We added 2 buttons: `login` is visible when User is not authenticated and `logout` is visible when User is.
+We added 2 buttons: 
+- `login` is visible when User is not authenticated 
+- `logout` is visible when User is
+
 Also, there we have new template for `Login` page.
 
 Next we have to add dependency to make Thymeleaf elements work (with version according to Spring Boot version)
@@ -190,8 +193,8 @@ First, add validation on UI:
 
 ![](picture/26.PNG)
 
-Only `ADMIN` users will be able to see Order details. 
-Also, we have corresponding error page.
+Only `ADMIN` users will be able to see Orders. 
+Also, there we have corresponding error page.
 
 Next let's add validation on server side: non-Admin user will have empty list of Orders in details of Customer page. 
 Also, we are going to have new Controller for error page:
