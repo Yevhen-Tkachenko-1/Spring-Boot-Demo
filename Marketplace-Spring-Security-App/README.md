@@ -15,6 +15,9 @@ There is Marketplace web app where we use next Spring Security features:
 
 * [In-Memory Authentication (non-production)](#in-memory-authentication-non-production)
 * [JDBC User Authentication (non-production)](#jdbc-user-authentication-non-production)
+* [BCrypt hashing for passwords](#bcrypt-hashing-for-passwords)
+* [Form-based authentication](#form-based-authentication)
+* [Authorization: User Roles](#authorization-user-roles)
 
 #### In-Memory Authentication (non-production)
 
@@ -130,14 +133,14 @@ Yevhen:
 
 ![](picture/17.PNG)
 
-but internally Spring Security authenticates as like this 
+but internally Spring Security authenticates as like this
 
 `Boolean isMatch = passwordEncoder().matches(enteredPassword, dbHashedPassword);`
 
 #### Form-based authentication
 
 In previous section, we've seen basic authentication with UI fields provided by default.
-This is non-production case in terms of functionality limitations. 
+This is non-production case in terms of functionality limitations.
 For example, we would like to have customized UI Form or logout feature.
 
 Now, we are going to implement custom approach for User to login/logout.
@@ -146,8 +149,9 @@ Let's start from HTML changes:
 
 ![](picture/18.PNG)
 
-We added 2 buttons: 
-- `login` is visible when User is not authenticated 
+We added 2 buttons:
+
+- `login` is visible when User is not authenticated
 - `logout` is visible when User is
 
 Also, there we have new template for `Login` page.
@@ -155,14 +159,15 @@ Also, there we have new template for `Login` page.
 Next we have to add dependency to make Thymeleaf elements work (with version according to Spring Boot version)
 
 ![](picture/19.PNG)
- 
+
 Now, we are good to implement java changes:
 
 ![](picture/20.PNG)
 
-We've added 
+We've added
+
 - new endpoint for login page
-- filters for User to be redirected to `login` 
+- filters for User to be redirected to `login`
 - `logout` action settings
 
 Once app is up and running we can easily access homepage and see `login` button:
@@ -173,7 +178,7 @@ For example, if User tries to open Customers tab, he will get `Login` page:
 
 ![](picture/22.PNG)
 
-Once signed in, User is able to see content and has button `Logout` to invalidate session: 
+Once signed in, User is able to see content and has button `Logout` to invalidate session:
 
 ![](picture/23.PNG)
 
@@ -193,10 +198,10 @@ First, add validation on UI:
 
 ![](picture/26.PNG)
 
-Only `ADMIN` users will be able to see Orders. 
+Only `ADMIN` users will be able to see Orders.
 Also, there we have corresponding error page.
 
-Next let's add validation on server side: non-Admin user will have empty list of Orders in details of Customer page. 
+Next let's add validation on server side: non-Admin user will have empty list of Orders in details of Customer page.
 Also, we are going to have new Controller for error page:
 
 ![](picture/27.PNG)
@@ -205,7 +210,7 @@ Finally, we add filtration on User access to pages:
 
 ![](picture/28.PNG)
 
-Once app is up and running we can sing in 
+Once app is up and running we can sing in
 by clicking `Login` button as a user `Yevhen` which has `USER` role:
 
 ![](picture/29.PNG)
