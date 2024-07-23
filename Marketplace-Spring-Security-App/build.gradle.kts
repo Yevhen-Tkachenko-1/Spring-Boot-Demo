@@ -1,7 +1,7 @@
 plugins {
     id("java")
-    id("org.springframework.boot") version "3.1.0"
-    id("io.spring.dependency-management") version "1.1.0"
+    id("org.springframework.boot") version "3.3.2"
+    id("io.spring.dependency-management") version "1.1.6"
 }
 
 group = "yevhent.demo.springboot.springsecurity"
@@ -19,7 +19,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
 
     // https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5
-    implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.1.0.RELEASE")
+    implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
 
     implementation("com.h2database:h2")
 
