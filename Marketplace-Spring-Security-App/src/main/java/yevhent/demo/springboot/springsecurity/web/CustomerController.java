@@ -1,12 +1,13 @@
 package yevhent.demo.springboot.springsecurity.web;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.security.Principal;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,7 @@ public class CustomerController {
     private final OrderRepository orderRepository;
 
     @GetMapping
-    public String getAllUsers(Model model){
+    public String getAllUsers(Model model) {
         Iterable<Customer> customersIterable = this.customerRepository.findAll();
         List<Customer> customers = new ArrayList<>();
         customersIterable.forEach(customers::add);
@@ -37,8 +38,8 @@ public class CustomerController {
         return "customers";
     }
 
-    @GetMapping(path="/{id}")
-    public String getUser(@PathVariable("id")long customerId, Model model){
+    @GetMapping(path = "/{id}")
+    public String getUser(@PathVariable("id") long customerId, Principal principal, Model model) {
         Optional<Customer> customer = this.customerRepository.findById(customerId);
         if (customer.isEmpty()) {
             throw new ResponseStatusException(
@@ -46,11 +47,29 @@ public class CustomerController {
             );
         }
         model.addAttribute("customer", customer.get());
-        Iterable<Order> ordersIterable = this.orderRepository.findAllByCustomerId(customer.get().getId());
-        List<Order> orders = new ArrayList<>();
-        ordersIterable.forEach(orders::add);
+        List<Order> orders = getOrders(principal, customer.get());
         model.addAttribute("orders", orders);
         model.addAttribute("module", "customers");
         return "detailed_customer";
+    }
+
+    private List<Order> getOrders(Principal principal, Customer customer) {
+        List<Order> orderList = new ArrayList<>();
+        if (principal instanceof UsernamePasswordAuthenticationToken) {
+            AtomicBoolean auth = new AtomicBoolean(false);
+            Collection<GrantedAuthority> authorities =
+                    ((UsernamePasswordAuthenticationToken) principal).getAuthorities();
+            authorities.forEach(authority -> {
+                        if (authority.getAuthority().equals("ROLE_ADMIN")) {
+                            auth.set(true);
+                        }
+                    }
+            );
+            if (auth.get()) {
+                Iterable<Order> orders = this.orderRepository.findAllByCustomerId(customer.getId());
+                orders.forEach(orderList::add);
+            }
+        }
+        return orderList;
     }
 }

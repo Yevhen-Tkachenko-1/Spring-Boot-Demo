@@ -18,7 +18,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(customizer -> customizer.requestMatchers("/", "/home").permitAll());
-
+        http.authorizeHttpRequests(customizer -> customizer.requestMatchers("/customers/**").hasRole("USER"));
+        http.authorizeHttpRequests(customizer -> customizer.requestMatchers("/orders").hasRole("ADMIN"));
         http.authorizeHttpRequests(customizer -> customizer.anyRequest().authenticated());
 
         http.formLogin(customizer -> customizer
