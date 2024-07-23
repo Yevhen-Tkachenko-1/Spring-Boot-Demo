@@ -178,3 +178,58 @@ By clicking logout we get back to `Login` page with corresponding message:
 
 ![](picture/24.PNG)
 
+#### Authorization: User Roles
+
+In previous section we already introduced schema and data for user Roles:
+
+![](picture/25.PNG)
+
+Now, let's implement User access to content depending on its `ROLE`.
+
+First, add validation on UI:
+
+![](picture/26.PNG)
+
+Only `ADMIN` users will be able to see Order details. 
+Also, we have corresponding error page.
+
+Next let's add validation on server side: non-Admin user will have empty list of Orders in details of Customer page. 
+Also, we are going to have new Controller for error page:
+
+![](picture/27.PNG)
+
+Finally, we add filtration on User access to pages:
+
+![](picture/28.PNG)
+
+Once app is up and running we can sing in 
+by clicking `Login` button as a user `Yevhen` which has `USER` role:
+
+![](picture/29.PNG)
+
+Next, let's try to open Customers page:
+
+![](picture/30.PNG)
+
+As `Yevhen` we can access it, and see `Customer Details` with no `Orders`:
+
+![](picture/31.PNG)
+
+And we don't have access to Orders page:
+
+![](picture/32.PNG)
+
+Now, let's logout and login as a user `admin` which has `ADMIN` role:
+
+![](picture/33.PNG)
+
+In addition to `USER` role, `ADMIN` role shows as `Orders` in `Customer Details`:
+
+![](picture/34.PNG)
+
+and provides access to Orders page:
+
+![](picture/35.PNG)
+
+
+
