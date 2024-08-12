@@ -21,6 +21,10 @@ dependencies {
     // https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
 
+    implementation("org.springframework.ldap:spring-ldap-core")
+    implementation("org.springframework.security:spring-security-ldap")
+    implementation("com.unboundid:unboundid-ldapsdk")
+
     implementation("com.h2database:h2")
 
     compileOnly("org.projectlombok:lombok:1.18.28")
