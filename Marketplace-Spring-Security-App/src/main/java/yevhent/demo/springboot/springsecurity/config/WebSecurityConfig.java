@@ -2,6 +2,7 @@ package yevhent.demo.springboot.springsecurity.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,10 +23,12 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests(customizer -> customizer.requestMatchers("/orders").hasRole("ADMIN"));
         http.authorizeHttpRequests(customizer -> customizer.anyRequest().authenticated());
 
-        http.formLogin(customizer -> customizer
-                .loginPage("/login")
-                .failureUrl("/login?error")
-                .permitAll());
+//        http.formLogin(customizer -> customizer
+//                .loginPage("/login")
+//                .failureUrl("/login?error")
+//                .permitAll());
+
+        http.oauth2Login(Customizer.withDefaults());
 
         http.logout(customizer -> customizer
                 .clearAuthentication(true)
