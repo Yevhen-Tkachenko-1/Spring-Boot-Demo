@@ -21,6 +21,9 @@ dependencies {
     // https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
 
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-client
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+
     implementation("com.h2database:h2")
 
     compileOnly("org.projectlombok:lombok:1.18.28")
