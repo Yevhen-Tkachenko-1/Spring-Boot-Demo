@@ -13,11 +13,12 @@ Implemented based on LinkedIn learning course:
 
 There is Marketplace web app where we use next Spring Security features:
 
-* [In-Memory Authentication (non-production)](#in-memory-authentication-non-production)
-* [JDBC User Authentication (non-production)](#jdbc-user-authentication-non-production)
-* [BCrypt hashing for passwords](#bcrypt-hashing-for-passwords)
-* [Form-based authentication](#form-based-authentication)
-* [Authorization: User Roles](#authorization-user-roles)
+  * [In-Memory Authentication (non-production)](#in-memory-authentication-non-production)
+  * [JDBC User Authentication (non-production)](#jdbc-user-authentication-non-production)
+  * [BCrypt hashing for passwords](#bcrypt-hashing-for-passwords)
+  * [Form-based authentication](#form-based-authentication)
+  * [Authorization: User Roles](#authorization-user-roles)
+  * [OAuth2 authentication](#oauth2-authentication)
 
 #### In-Memory Authentication (non-production)
 
