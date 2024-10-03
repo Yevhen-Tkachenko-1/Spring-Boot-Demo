@@ -239,5 +239,43 @@ and provides access to Orders page:
 
 ![](picture/35.PNG)
 
+#### OAuth2 authentication
 
+Going back to authentication, we are going to migrate from Form-based to GitHub provided login.
 
+This will be the simplest solution with no authorization neither logout.
+
+First, we have to set up our App as a client for GitHub authorization service, 
+for example as described [here](https://spring.io/guides/tutorials/spring-boot-oauth2#github-register-application).
+
+Then, we are ready to implement OAuth2 on our app side,
+let's start with dependency:
+
+![](picture/36.PNG)
+
+Next, we comment Form authentication and add OAuth2:
+
+![](picture/37.PNG)
+
+Now, let's put our credentials provided by GitHub into app properties. 
+Actual values we store in Env variables for security reason:
+
+![](picture/38.PNG)
+
+When we start app and open app in browser, we have Login option:
+
+![](picture/39.PNG)
+
+Upon clicking login, we are navigated to OAuth2 login page:  
+
+![](picture/40.PNG)
+
+And by clicking GitHub we finally redirected to GitHub authentication:
+
+![](picture/41.PNG)
+
+After successful login and going to Order page, we get such error as don't have right authorization settings:
+
+![](picture/42.PNG)
+
+Anyway, we achieved GitHub OAuth2 login and GitHub error handling in case of missing rights.
