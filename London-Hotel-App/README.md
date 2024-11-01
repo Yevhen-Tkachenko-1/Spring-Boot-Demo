@@ -6,11 +6,11 @@ Implemented based on LinkedIn learning course:
 ### Tech stack
 
 - Java 17
-- Gradle
 - Spring 6
 - Spring Boot 3
-- H2 database
+- Gradle
 - PostgreSQL
+- H2 database
 
 ### Prepare
 
