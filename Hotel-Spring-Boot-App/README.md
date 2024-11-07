@@ -7,7 +7,8 @@ Implemented based on LinkedIn learning courses:
 There is Hotel web app where we use next Spring features:
 
 - Spring Data
-- Spring Validation
+- Validation
+- Exception Handling
 - Spring App Listener
 - Service Layer
 - Web Controllers
