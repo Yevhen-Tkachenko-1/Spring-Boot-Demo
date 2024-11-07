@@ -2,6 +2,7 @@ package yevhent.demo.springboot.hotel.app.service;
 
 import yevhent.demo.springboot.hotel.app.data.Guest;
 import yevhent.demo.springboot.hotel.app.data.GuestRepository;
+import yevhent.demo.springboot.hotel.app.exception.ResourceNotFoundException;
 import yevhent.demo.springboot.hotel.app.model.GuestModel;
 import yevhent.demo.springboot.hotel.app.util.CollectionUtil;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,10 @@ public class GuestBaseService {
 
     public Optional<Guest> getGuest(Long id) {
         return guestRepository.findById(id);
+    }
+
+    public Guest findGuest(Long id) {
+        return guestRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No Guest with id = " + id));
     }
 
     public List<Guest> getGuests() {

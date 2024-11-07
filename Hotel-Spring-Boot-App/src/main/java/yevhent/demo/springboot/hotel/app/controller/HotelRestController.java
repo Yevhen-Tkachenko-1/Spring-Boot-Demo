@@ -1,17 +1,13 @@
 package yevhent.demo.springboot.hotel.app.controller;
 
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 import yevhent.demo.springboot.hotel.app.data.Guest;
 import yevhent.demo.springboot.hotel.app.data.Reservation;
 import yevhent.demo.springboot.hotel.app.model.ReservationModel;
 import yevhent.demo.springboot.hotel.app.service.GuestBaseService;
 import yevhent.demo.springboot.hotel.app.service.ReservationService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +16,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-public class WebserviceRestController {
+public class HotelRestController {
 
     private final GuestBaseService guestBaseService;
     private final ReservationService reservationService;
@@ -31,8 +27,13 @@ public class WebserviceRestController {
         return guests;
     }
 
+    @GetMapping("/guest/{id}")
+    public Guest getGuest(@PathVariable Long id) {
+        return guestBaseService.findGuest(id);
+    }
+
     @PostMapping("/guestbase")
-    public Guest addGuest(@RequestBody Guest guest) {
+    public Guest addGuest(@Valid @RequestBody Guest guest) {
         Objects.requireNonNull(guest);
         return guestBaseService.addGuest(guest)
                 .orElseThrow(() -> new IllegalStateException("Unable to add " + guest));
