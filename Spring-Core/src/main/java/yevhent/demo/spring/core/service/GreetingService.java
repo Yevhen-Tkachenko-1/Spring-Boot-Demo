@@ -1,7 +1,7 @@
 package yevhent.demo.spring.core.service;
 
-import com.yevhent.springdemo.aspect.Loggable;
-import com.yevhent.springdemo.aspect.TimeTrackable;
+import yevhent.demo.spring.core.aspect.Loggable;
+import yevhent.demo.spring.core.aspect.TimeTrackable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

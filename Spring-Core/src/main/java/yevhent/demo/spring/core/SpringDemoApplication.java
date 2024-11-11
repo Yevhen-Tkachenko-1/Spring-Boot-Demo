@@ -1,7 +1,7 @@
 package yevhent.demo.spring.core;
 
-import com.yevhent.springdemo.config.ApplicationConfig;
-import com.yevhent.springdemo.service.OutputService;
+import yevhent.demo.spring.core.config.ApplicationConfig;
+import yevhent.demo.spring.core.service.OutputService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

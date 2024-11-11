@@ -1,6 +1,6 @@
 package yevhent.demo.spring.core.config;
 
-import com.yevhent.springdemo.service.TimeService;
+import yevhent.demo.spring.core.service.TimeService;
 import org.springframework.context.annotation.*;
 
 @Configuration
