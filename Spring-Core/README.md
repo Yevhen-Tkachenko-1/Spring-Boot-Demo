@@ -1,5 +1,6 @@
-# Spring-Demo-Application
-Learn and play with Spring Framework
+# Spring Core Demo
+
+Learn and play with fundamental aspects of Spring Framework 
 
 Topics covered:
 - App Configuration with Java Annotation Context
@@ -21,5 +22,5 @@ Implemented based on LinkedIn learning course:
 
 ### Local run
 
-- Run `main()` method in [this](src/main/java/com/yevhent/springdemo/SpringDemoApplication.java) class
+- Run `main()` method in [this](src/main/java/yevhent/demo/spring/core/SpringDemoApplication.java) class
 - Check output in console
