@@ -1,5 +1,5 @@
-rootProject.name = 'Spring-Boot-Demo'
+rootProject.name = 'Spring-Framework-Demo'
 include 'Hotel-Spring-Boot-App'
 include 'Marketplace-Spring-Security-App'
-include 'London-Hotel-App'
+
 
