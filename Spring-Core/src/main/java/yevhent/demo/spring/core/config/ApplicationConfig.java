@@ -5,7 +5,7 @@ import org.springframework.context.annotation.*;
 
 @Configuration
 @PropertySource("classpath:application.properties")
-@ComponentScan(basePackages = "com.yevhent.springdemo")
+@ComponentScan(basePackages = "yevhent.demo.spring.core")
 @EnableAspectJAutoProxy
 public class ApplicationConfig {
 
